@@ -3,6 +3,7 @@ import os
 from sqlalchemy import (
     Column,
     DateTime,
+    Float,
     Integer,
     MetaData,
     String,
@@ -26,6 +27,16 @@ notes = Table(
     Column("description", String(50)),
     Column("created_date", DateTime, default=func.now(), nullable=False),
 )
+
+events = Table(
+    "events",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("title", String(80), nullable=False),
+    Column("city", String(50), nullable=False),
+    Column("price_usd", Float, nullable=False),
+    Column("seats_left", Integer, nullable=False),
+) 
 
 # databases query builder
 database = Database(DATABASE_URL)
